@@ -8,16 +8,7 @@ export default function reserve(state = [], action) {
     case "ADD_RESERVE_SUCCESS":
       // draft: Copia uma referencia, nao altera ooriginal
       return produce(state, (draft) => {
-        const tripIndex = draft.findIndex((trip) => trip.id === action.trip.id);
-
-        if (tripIndex >= 0) {
-          draft[tripIndex].amount += 1;
-        } else {
-          draft.push({
-            ...action.trip,
-            amount: 1,
-          });
-        }
+        draft.push(action.trip);        
       });
     case "REMOVE_RESERVE":
       return produce(state, (draft) => {
